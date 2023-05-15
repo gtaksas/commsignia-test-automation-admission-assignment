@@ -29,13 +29,12 @@ def test_add_two_negative_numbers(calc, capfd):
     captured = capfd.readouterr()
     assert captured.out.strip() == '-6500'
 
-# Operations with floating point numbers
+# Operations with floating point numbers !!
 def test_add_floats(calc, capfd):
     calc.onecmd('add 2.5 2.5')
     captured = capfd.readouterr()
     assert captured.out.strip() == '5' or '5.0'
 
-# add, sub, mul, div, rem, sqrt, checksum, band, bor, bxor, bnot, bshr, bshl
 
 # Subtraction
 # Multiplication
@@ -48,4 +47,4 @@ def test_add_floats(calc, capfd):
 # Bitwise excluse-OR BXOr()
 # bnot
 # bshl
-# bshr
+# bshr !
