@@ -65,7 +65,11 @@
             <tr>
                 <td>D0003</td>
                 <td>Division a/b reversed</td>
-                <td>If you type "div 2 4" in icalc prompt you expect it to be "2/4" and return "0.5" but instead it returns 4/2=2. If you type "div 4 2" you expect "2" as a result but "0" returns instead.  (problem may accrues from icalc.py line 65-67 parse(arg) arg.split() function)</td>
+                <td>If you type "div 2 4" in icalc prompt you expect it to be "2/4" and return "0.5" but instead it returns 4/2=2. If you type "div 4 2" you expect "2" as a result but "0" returns instead.  
+                    <s>(problem may accrues from icalc.py line 65-67 parse(arg) arg.split() function)</s> <br>
+                    Wrong function called<br>
+                    icalc.py line 27 -rem +div
+                </td>
                 <td>test_divide_A_B_input_sequence_reversed()</td>
                 <td>High</td>
                 <td>Major</td>
@@ -81,7 +85,10 @@
             <tr>
                 <td>D0004</td>
                 <td>Remainder</td>
-                <td>icalc.py "rem 1 3" returns "0.3333333333333333" instead of "1". (Meanwhile calculator.py rem() function works and returns the expected values.) </td>
+                <td>icalc.py "rem 1 3" returns "0.3333333333333333" instead of "1". (Meanwhile calculator.py rem() function works and returns the expected values.) <br>
+                    Wrong function called<br>
+                    icalc.py line 31 -div +rem
+                </td>
                 <td>test_rem_simple()</td>
                 <td>High</td>
                 <td>Major</td>
@@ -180,6 +187,9 @@
                 <th>Date</th>
                 <td>2023.05.15.</td>
             </tr>
+            <tr>
+                <th>Update</th>
+                <td>2023.05.16. 13:25</td>
             <tr>
                 <th>Tester</th>
                 <td>Gergo Taksas</td>
