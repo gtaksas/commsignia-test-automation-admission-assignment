@@ -36,6 +36,12 @@ def test_add_floats(calc, capfd):
     captured = capfd.readouterr()
     assert captured.out.strip() == '5' or '5.0'
 
+# Check in calculator.py if floating point numbers can be given and returned
+def test_add_and_return_floats_in_calculator_py():
+    cal = calculator.Calculator()
+    result = cal.add(2, 3.5)
+    assert result == 5.5
+
 # sub
 # Subtraction
 def test_subtract_two_positive_numbers(calc, capfd):
@@ -158,3 +164,9 @@ def test_bit_shift_right_icalc(calc, capfd):
     captured = capfd.readouterr()
     assert captured.out.strip() == str(c)
 
+# There are three lines in calculator.py wich will make trouble 1 out of 100 times.
+def test_mul_functions_random_troublemaker():
+    cal = calculator.Calculator()
+    for i in range(0, 1000):
+        result = cal.mul(6, 5)
+        assert result == 30

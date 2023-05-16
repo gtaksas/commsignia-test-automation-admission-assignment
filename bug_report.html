@@ -33,12 +33,16 @@
             <tr>
                 <td>D0001</td>
                 <td>Floating point numbers</td>
-                <td>Operations with floating point numbers are not possible. The calculator only takes integers.</td>
+                <td>Operations with floating point numbers are not possible. <s>The calculator</s> icalc.py only takes integers.<br>
+                    Due to 'int' in line 67 in icalc.py's parse function() where it "return tuple(map(int, arg.split()))" it can take int only and not float.
+                    Therefore if float typed to the shell, it causes the program to stop. Only ints can get to calculator.py through icalc.py so this is the same
+                    reason why icalc.py can return only integers.
+                </td>
                 <td>test_add_floats()</td>
                 <td>High</td>
                 <td>Blocker</td>
                 <td>
-                    <select class="decor">
+                    <select>
                         <option>Reported</option>
                         <option>Retest</option>
                         <option>Rejected</option>
@@ -49,7 +53,9 @@
             <tr>
                 <td>D0002</td>
                 <td>Only return int</td>
-                <td>icalc.py returns integers only. For example 2/4 returns "0" instead of "0.5" as expected. (if it is expected.)</td>
+                <td>icalc.py returns integers only. For example 2/4 returns "0" instead of "0.5" as expected. (if it is expected.)<br>
+                    The reason has been described in the previous defect (D0001).
+                </td>
                 <td>-</td>
                 <td>High</td>
                 <td>Major</td>
@@ -181,6 +187,22 @@
                     </select>
                 </td>
             </tr>
+            <tr>
+                <td>D0010</td>
+                <td>multiplication random</td>
+                <td>calculator.py line 18-20 will make mul() function add 89 to the result at 1 out of 100 times.</td>
+                <td>test_mul_functions_random_troublemaker()</td>
+                <td>High</td>
+                <td>Major</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
         </table>
         <table class="center">
             <tr>
@@ -190,6 +212,11 @@
             <tr>
                 <th>Update</th>
                 <td>2023.05.16. 13:25</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>2023.05.16. 14:33</td>
+            </tr>
             <tr>
                 <th>Tester</th>
                 <td>Gergo Taksas</td>
