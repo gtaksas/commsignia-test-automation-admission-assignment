@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="10" skipped="0" tests="22" time="0.374" timestamp="2023-05-15T14:53:03.596541" hostname="DESKTOP-OPX62DO"><testcase classname="test_calculator" name="test_add_two_positive_numbers" time="0.010" /><testcase classname="test_calculator" name="test_add_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_input_dont_get_stuck" time="0.003" /><testcase classname="test_calculator" name="test_add_two_negative_numbers" time="0.004" /><testcase classname="test_calculator" name="test_add_floats" time="0.004"><failure message="ValueError: invalid literal for int() with base 10: '2.5'">calc = &lt;icalc.InteractiveCalculator object at 0x000001FCD4646220&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001FCD4646FD0&gt;
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="9" skipped="0" tests="22" time="0.303" timestamp="2023-05-15T19:45:56.242246" hostname="DESKTOP-OPX62DO"><testcase classname="test_calculator" name="test_add_two_positive_numbers" time="0.006" /><testcase classname="test_calculator" name="test_add_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_input_dont_get_stuck" time="0.001" /><testcase classname="test_calculator" name="test_add_two_negative_numbers" time="0.007" /><testcase classname="test_calculator" name="test_add_floats" time="0.004"><failure message="ValueError: invalid literal for int() with base 10: '2.5'">calc = &lt;icalc.InteractiveCalculator object at 0x00000249F29ED1F0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x00000249F29ED5B0&gt;
 
     def test_add_floats(calc, capfd):
 &gt;       calc.onecmd('add 2.5 2.5')
@@ -18,7 +18,7 @@ arg = '2.5 2.5'
 &gt;       return tuple(map(int, arg.split()))
 E       ValueError: invalid literal for int() with base 10: '2.5'
 
-icalc.py:67: ValueError</failure></testcase><testcase classname="test_calculator" name="test_subtract_two_positive_numbers" time="0.008" /><testcase classname="test_calculator" name="test_multiply_two_positive_numbers" time="0.004" /><testcase classname="test_calculator" name="test_divide_aliquot_whole_numbers" time="0.008"><failure message="AssertionError: assert '0' == '2'&#10;  - 2&#10;  + 0">calc = &lt;icalc.InteractiveCalculator object at 0x000001FCD4732940&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001FCD47322E0&gt;
+icalc.py:67: ValueError</failure></testcase><testcase classname="test_calculator" name="test_subtract_two_positive_numbers" time="0.007" /><testcase classname="test_calculator" name="test_multiply_two_positive_numbers" time="0.007" /><testcase classname="test_calculator" name="test_divide_aliquot_whole_numbers" time="0.006"><failure message="AssertionError: assert '0' == '2'&#10;  - 2&#10;  + 0">calc = &lt;icalc.InteractiveCalculator object at 0x00000249F2A733A0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x00000249F2A732E0&gt;
 
     def test_divide_aliquot_whole_numbers(calc, capfd):
         calc.onecmd('div 4 2')
@@ -28,34 +28,28 @@ E       AssertionError: assert '0' == '2'
 E         - 2
 E         + 0
 
-test_calculator.py:58: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_divide_A_B_input_sequence_reversed" time="0.004"><failure message="AssertionError: assert '2' != '2'&#10; +  where '2' = &lt;built-in method strip of str object at 0x000001FCD4747430&gt;()&#10; +    where &lt;built-in method strip of str object at 0x000001FCD4747430&gt; = '2\n'.strip&#10; +      where '2\n' = CaptureResult(out='2\n', err='').out">calc = &lt;icalc.InteractiveCalculator object at 0x000001FCD4635FA0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001FCD4635C70&gt;
+test_calculator.py:58: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_divide_A_B_input_sequence_reversed" time="0.007"><failure message="AssertionError: assert '2' != '2'&#10; +  where '2' = &lt;built-in method strip of str object at 0x00000249F2AB2530&gt;()&#10; +    where &lt;built-in method strip of str object at 0x00000249F2AB2530&gt; = '2\n'.strip&#10; +      where '2\n' = CaptureResult(out='2\n', err='').out">calc = &lt;icalc.InteractiveCalculator object at 0x00000249F29ED040&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x00000249F29ED670&gt;
 
     def test_divide_A_B_input_sequence_reversed(calc, capfd):
         calc.onecmd('div 2 4')
         captured = capfd.readouterr()
 &gt;       assert captured.out.strip() != '2'
 E       AssertionError: assert '2' != '2'
-E        +  where '2' = &lt;built-in method strip of str object at 0x000001FCD4747430&gt;()
-E        +    where &lt;built-in method strip of str object at 0x000001FCD4747430&gt; = '2\n'.strip
+E        +  where '2' = &lt;built-in method strip of str object at 0x00000249F2AB2530&gt;()
+E        +    where &lt;built-in method strip of str object at 0x00000249F2AB2530&gt; = '2\n'.strip
 E        +      where '2\n' = CaptureResult(out='2\n', err='').out
 
-test_calculator.py:64: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_div_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_div_aliquant" time="0.002" /><testcase classname="test_calculator" name="test_rem_simple" time="0.005"><failure message="AssertionError: assert '3.0' == '1'&#10;  - 1&#10;  + 3.0">calc = &lt;icalc.InteractiveCalculator object at 0x000001FCD4732400&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001FCD4643940&gt;
+test_calculator.py:64: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_div_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_div_aliquant" time="0.001" /><testcase classname="test_calculator" name="test_rem_simple" time="0.007"><failure message="AssertionError: assert '0.3333333333333333' == '1'&#10;  - 1&#10;  + 0.3333333333333333">calc = &lt;icalc.InteractiveCalculator object at 0x00000249F2A1FA60&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x00000249F2A1F790&gt;
 
     def test_rem_simple(calc, capfd):
-        calc.onecmd('rem 3 1')
+        calc.onecmd('rem 1 3')
         captured = capfd.readouterr()
 &gt;       assert captured.out.strip() == '1'
-E       AssertionError: assert '3.0' == '1'
+E       AssertionError: assert '0.3333333333333333' == '1'
 E         - 1
-E         + 3.0
+E         + 0.3333333333333333
 
-test_calculator.py:83: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_rem_function_in_calculator_py" time="0.001"><failure message="assert 0 == 1">def test_rem_function_in_calculator_py():
-        cal = calculator.Calculator()
-        result = cal.rem(3, 1)
-&gt;       assert result == 1
-E       assert 0 == 1
-
-test_calculator.py:89: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_sqrt_simple" time="0.006"><failure message="TypeError: sub() missing 1 required positional argument: 'b'">calc = &lt;icalc.InteractiveCalculator object at 0x000001FCD4636D90&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001FCD4636430&gt;
+test_calculator.py:83: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_rem_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_sqrt_simple" time="0.007"><failure message="TypeError: sub() missing 1 required positional argument: 'b'">calc = &lt;icalc.InteractiveCalculator object at 0x00000249F2A2E820&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x00000249F2A2EF40&gt;
 
     def test_sqrt_simple(calc, capfd):
 &gt;       calc.onecmd('sqrt 25')
@@ -66,20 +60,20 @@ c:\python\python39\lib\cmd.py:217: in onecmd
     return func(arg)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = &lt;icalc.InteractiveCalculator object at 0x000001FCD4636D90&gt;, arg = '25'
+self = &lt;icalc.InteractiveCalculator object at 0x00000249F2A2E820&gt;, arg = '25'
 
     def do_sqrt(self, arg):
         'sqrt(A)'
 &gt;       print(self.cal.sub(*parse(arg)))
 E       TypeError: sub() missing 1 required positional argument: 'b'
 
-icalc.py:35: TypeError</failure></testcase><testcase classname="test_calculator" name="test_sqrt_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_checksum_function_in_calculator_py" time="0.001"><failure message="assert (0 != 0)">def test_checksum_function_in_calculator_py():
+icalc.py:35: TypeError</failure></testcase><testcase classname="test_calculator" name="test_sqrt_function_in_calculator_py" time="0.002" /><testcase classname="test_calculator" name="test_checksum_function_in_calculator_py" time="0.001"><failure message="assert (0 != 0)">def test_checksum_function_in_calculator_py():
         cal = calculator.Calculator()
         result = cal.checksum(123) and cal.checksum(321)
 &gt;       assert result != 0 and 0
 E       assert (0 != 0)
 
-test_calculator.py:109: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_and_icalc" time="0.006" /><testcase classname="test_calculator" name="test_bit_or_icalc" time="0.004"><failure message="AssertionError: assert '' == '1536'&#10;  - 1536">calc = &lt;icalc.InteractiveCalculator object at 0x000001FCD4734D60&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001FCD4734D90&gt;
+test_calculator.py:109: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_and_icalc" time="0.004" /><testcase classname="test_calculator" name="test_bit_or_icalc" time="0.005"><failure message="AssertionError: assert '' == '1536'&#10;  - 1536">calc = &lt;icalc.InteractiveCalculator object at 0x00000249F2A60A00&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x00000249F2A601F0&gt;
 
     def test_bit_or_icalc(calc, capfd):
         calc.onecmd('bit_or 1024 512')
@@ -88,7 +82,7 @@ test_calculator.py:109: AssertionError</failure></testcase><testcase classname="
 E       AssertionError: assert '' == '1536'
 E         - 1536
 
-test_calculator.py:123: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_xor_icalc" time="0.005" /><testcase classname="test_calculator" name="test_bit_not_icalc" time="0.005"><failure message="AssertionError: assert '58' == '5'&#10;  - 5&#10;  + 58">calc = &lt;icalc.InteractiveCalculator object at 0x000001FCD46437C0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001FCD4643FA0&gt;
+test_calculator.py:123: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_xor_icalc" time="0.004" /><testcase classname="test_calculator" name="test_bit_not_icalc" time="0.007"><failure message="AssertionError: assert '58' == '5'&#10;  - 5&#10;  + 58">calc = &lt;icalc.InteractiveCalculator object at 0x00000249F2A615B0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x00000249F2A61AF0&gt;
 
     def test_bit_not_icalc(calc, capfd):
         number = int('111010', 2)
@@ -100,7 +94,7 @@ E       AssertionError: assert '58' == '5'
 E         - 5
 E         + 58
 
-test_calculator.py:139: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_shit_left_icalc" time="0.005" /><testcase classname="test_calculator" name="test_bit_shit_right_icalc" time="0.008"><failure message="NameError: name 'arg' is not defined">calc = &lt;icalc.InteractiveCalculator object at 0x000001FCD4708A60&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001FCD46355E0&gt;
+test_calculator.py:139: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_shit_left_icalc" time="0.004" /><testcase classname="test_calculator" name="test_bit_shit_right_icalc" time="0.006"><failure message="NameError: name 'arg' is not defined">calc = &lt;icalc.InteractiveCalculator object at 0x00000249F2A1FB50&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x00000249F2A1F520&gt;
 
     def test_bit_shit_right_icalc(calc, capfd):
         a = int('01110000', 2)
@@ -114,7 +108,7 @@ c:\python\python39\lib\cmd.py:217: in onecmd
     return func(arg)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = &lt;icalc.InteractiveCalculator object at 0x000001FCD4708A60&gt;, a = '112 4'
+self = &lt;icalc.InteractiveCalculator object at 0x00000249F2A1FB50&gt;, a = '112 4'
 
     def do_bit_shift_right(self, a):
         'num &gt;&gt; shift'

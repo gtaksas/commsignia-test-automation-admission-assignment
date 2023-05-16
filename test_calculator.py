@@ -78,14 +78,14 @@ def test_div_aliquant():
 # rem
 # Remainder
 def test_rem_simple(calc, capfd):
-    calc.onecmd('rem 3 1')
+    calc.onecmd('rem 1 3')
     captured = capfd.readouterr()
     assert captured.out.strip() == '1'
 
 # Check if remainder function in calculator.py is working
 def test_rem_function_in_calculator_py():
     cal = calculator.Calculator()
-    result = cal.rem(3, 1)
+    result = cal.rem(1, 3)
     assert result == 1
 
 # sqrt
@@ -140,7 +140,7 @@ def test_bit_not_icalc(calc, capfd):
 
 # bshl
 # Bitwise Left Shift
-def test_bit_shit_left_icalc(calc, capfd):
+def test_bit_shift_left_icalc(calc, capfd):
     a = int('00000101', 2)
     b = 3
     c = int('00101000', 2)
@@ -150,7 +150,7 @@ def test_bit_shit_left_icalc(calc, capfd):
 
 # bshr !
 # Bitwise Right Shift (icalc.py line 59 arg not defined: line 57 -a +arg)
-def test_bit_shit_right_icalc(calc, capfd):
+def test_bit_shift_right_icalc(calc, capfd):
     a = int('01110000', 2)
     b = 4
     c = int('00000111', 2)

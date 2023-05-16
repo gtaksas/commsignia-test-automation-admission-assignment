@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>bug_report</title>
+        <style>
+            .centertext {text-align: center;}
+            .center {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            table {
+                border-spacing: 15px;
+            }
+            select {
+                appearance: none;
+                border: none;
+                padding: 0.25em 0.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="centertext">Bug Report</h1>
+        <table class="center">
+            <tr>
+                <th>Defect_ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Test reference</th>
+                <th>Priority</th>
+                <th>Severity</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>D0001</td>
+                <td>Floating point numbers</td>
+                <td>Operations with floating point numbers are not possible. The calculator only takes integers.</td>
+                <td>test_add_floats()</td>
+                <td>High</td>
+                <td>Blocker</td>
+                <td>
+                    <select class="decor">
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0002</td>
+                <td>Only return int</td>
+                <td>icalc.py returns integers only. For example 2/4 returns "0" instead of "0.5" as expected. (if it is expected.)</td>
+                <td>-</td>
+                <td>High</td>
+                <td>Major</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0003</td>
+                <td>Division a/b reversed</td>
+                <td>If you type "div 2 4" in icalc prompt you expect it to be "2/4" and return "0.5" but instead it returns 4/2=2. If you type "div 4 2" you expect "2" as a result but "0" returns instead.  (problem may accrues from icalc.py line 65-67 parse(arg) arg.split() function)</td>
+                <td>test_divide_A_B_input_sequence_reversed()</td>
+                <td>High</td>
+                <td>Major</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0004</td>
+                <td>Remainder</td>
+                <td>icalc.py "rem 1 3" returns "0.3333333333333333" instead of "1". (Meanwhile calculator.py rem() function works and returns the expected values.) </td>
+                <td>test_rem_simple()</td>
+                <td>High</td>
+                <td>Major</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0005</td>
+                <td>Typo in do_sqrt() print() function</td>
+                <td>(icalc.py line 35 -sub +sqrt)</td>
+                <td>test_sqrt_simple()</td>
+                <td>Medium</td>
+                <td>Trivial</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0006</td>
+                <td>Checksum function is not written</td>
+                <td>In icalc.py there is no function for checksum operation. In calculator.py checksum() function after it takes two arguments there is nothing else but the line: "return 0".</td>
+                <td>test_checksum_function_in_calculator_py()</td>
+                <td>Low</td>
+                <td>Minor</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0007</td>
+                <td>Missing print statement</td>
+                <td>icalc.py line 43 print statement is missing. (So icalc.py do_bit_or() function returns nothing.) </td>
+                <td>test_bit_or_icalc()</td>
+                <td>Medium</td>
+                <td>Trivial</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0008</td>
+                <td>Bitwise NOT function is wrong</td>
+                <td>calculator.py bnot() function returns the given number itself because there is double bitwise NOT operator "~~" on line 45. Altough deleting one will not return the expected value eithter.</td>
+                <td>test_bit_not_icalc()</td>
+                <td>Medium</td>
+                <td>Minor</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0009</td>
+                <td>Typo in do_bit_shift_right() functions argument</td>
+                <td>icalc.py line 59 arg not defined: line 57 -a +arg</td>
+                <td>test_bit_shift_right_icalc()</td>
+                <td>Low</td>
+                <td>Trivial</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <table class="center">
+            <tr>
+                <th>Date</th>
+                <td>2023.05.15.</td>
+            </tr>
+            <tr>
+                <th>Tester</th>
+                <td>Gergo Taksas</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>test_calculator.py<br>execution_test_report.xml</td>
+            </tr>
+        </table>
+    </body>
+</html>
