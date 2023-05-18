@@ -1,10 +1,17 @@
+#!/usr/bin/env python3
+
 import icalc
 import calculator
 import pytest
 
+
 @pytest.fixture
 def calc():
     return icalc.InteractiveCalculator()
+
+@pytest.fixture
+def cal():
+    return calculator.Calculator()
 
 # add
 # Test Addition
@@ -14,8 +21,7 @@ def test_add_two_positive_numbers(calc, capfd):
     assert captured.out.strip() == '9'
 
 # In case anything changes in icalc.py wich can cause an error we can still check if operational functions in calculator.py are working
-def test_add_function_in_calculator_py():
-    cal = calculator.Calculator()
+def test_add_function_in_calculator_py(cal):
     result = cal.add(2, 3)
     assert result == 5
 
@@ -37,8 +43,7 @@ def test_add_floats(calc, capfd):
     assert captured.out.strip() == '5' or '5.0'
 
 # Check in calculator.py if floating point numbers can be given and returned
-def test_add_and_return_floats_in_calculator_py():
-    cal = calculator.Calculator()
+def test_add_and_return_floats_in_calculator_py(cal):
     result = cal.add(2, 3.5)
     assert result == 5.5
 
@@ -70,14 +75,12 @@ def test_divide_A_B_input_sequence_reversed(calc, capfd):
     assert captured.out.strip() != '2'
 
 # Check if division function in calculator.py is working
-def test_div_function_in_calculator_py():
-    cal = calculator.Calculator()
+def test_div_function_in_calculator_py(cal):
     result = cal.div(25, 5)
     assert result == 5
 
 # Floating point numbers when numbers cant be devided without a remainder 
-def test_div_aliquant():
-    cal = calculator.Calculator()
+def test_div_aliquant(cal):
     result = cal.div(3, 2)
     assert result == 1.5
 
@@ -89,8 +92,7 @@ def test_rem_simple(calc, capfd):
     assert captured.out.strip() == '1'
 
 # Check if remainder function in calculator.py is working
-def test_rem_function_in_calculator_py():
-    cal = calculator.Calculator()
+def test_rem_function_in_calculator_py(cal):
     result = cal.rem(1, 3)
     assert result == 1
 
@@ -102,17 +104,20 @@ def test_sqrt_simple(calc, capfd):
     assert captured.out.strip() == '5'
 
 # Check if square root function in calculator.py is working
-def test_sqrt_function_in_calculator_py():
-    cal = calculator.Calculator()
+def test_sqrt_function_in_calculator_py(cal):
     result = cal.sqrt(25)
     assert result == 5
 
 # Checksum !!!
 # Check if checksum function in calculator.py is present and not returning 0 every time on different values
-def test_checksum_function_in_calculator_py():
-    cal = calculator.Calculator()
+def test_checksum_function_in_calculator_py(cal):
     result = cal.checksum(123) and cal.checksum(321)
     assert result != 0 and 0
+
+# if there would be a checksum function we could check whether an incorrect checksum would be detected or not. But we don't have enough information to check that.
+def test_incorrect_checksum(cal):
+    result = cal.checksum(11010101011000111001010011101100, 8)
+    assert result == '010' # bin(2)
 
 # band
 # Bitwise AND
@@ -165,8 +170,7 @@ def test_bit_shift_right_icalc(calc, capfd):
     assert captured.out.strip() == str(c)
 
 # There are three lines in calculator.py wich will make trouble 1 out of 100 times.
-def test_mul_functions_random_troublemaker():
-    cal = calculator.Calculator()
+def test_mul_functions_random_troublemaker(cal):
     for i in range(0, 1000):
         result = cal.mul(6, 5)
         assert result == 30

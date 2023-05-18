@@ -1,2 +1,5 @@
 *.pyc
 __pycache__/
+bug_report.py
+bug_report.csv
+bug_report_writer.py

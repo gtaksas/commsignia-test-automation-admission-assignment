@@ -33,10 +33,9 @@
             <tr>
                 <td>D0001</td>
                 <td>Floating point numbers</td>
-                <td>Operations with floating point numbers are not possible. <s>The calculator</s> icalc.py only takes integers.<br>
-                    Due to 'int' in line 67 in icalc.py's parse function() where it "return tuple(map(int, arg.split()))" it can take int only and not float.
-                    Therefore if float typed to the shell, it causes the program to stop. Only ints can get to calculator.py through icalc.py <s>so this is the same
-                    reason why icalc.py can return only integers when trying to add or subtract numbers</s>.
+                <td>Operations with floating point numbers are not possible. icalc.py only takes integers.<br>
+                    Due to 'int' in line 67 in icalc.py's parse() function where it "return tuple(map(int, arg.split()))" it can take int only and not float.
+                    Therefore if float typed to the shell, it causes the program to stop. Only ints can get to calculator.py through icalc.py.
                 </td>
                 <td>test_add_floats()</td>
                 <td>High</td>
@@ -51,30 +50,9 @@
                 </td>
             </tr>
             <tr>
-                <td>D0002</td>
-                <td>Only return int</td>
-                <td>icalc.py returns integers only. For example <s>2/4 returns "0" instead of "0.5" as expected. (if it is expected.)</s>
-                    "add 2 3.5" will cause the program to crash instead of returning 5.5 <br>
-                    One of the reason (in case of addition) has been described in the previous defect (D0001).<br>
-                    The other case is when division not returns floats and the reason in this case is because of a wrong function call (D0003).
-                </td>
-                <td>-</td>
-                <td>High</td>
-                <td>Major</td>
-                <td>
-                    <select>
-                        <option>Reported</option>
-                        <option>Retest</option>
-                        <option>Rejected</option>
-                        <option>Solved</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
                 <td>D0003</td>
-                <td>Division a/b reversed</td>
-                <td>If you type "div 2 4" in icalc prompt you expect it to be "2/4" and return "0.5" but instead it returns 4/2=2. If you type "div 4 2" you expect "2" as a result but "0" returns instead.  
-                    <s>(problem may accrues from icalc.py line 65-67 parse(arg) arg.split() function)</s> <br>
+                <td>rem() called instead of Division</td>
+                <td>If you type "div 2 4" in icalc prompt you expect it to be "2/4" and return "0.5" but instead it returns 2%4=2. If you type "div 4 2" you expect "2" as a result but "0" returns instead. <br>
                     Wrong function called<br>
                     icalc.py line 27 -rem +div
                 </td>
@@ -128,7 +106,7 @@
             <tr>
                 <td>D0006</td>
                 <td>Checksum function is not written</td>
-                <td>In icalc.py there is no function for checksum operation. In calculator.py checksum() function after it takes two arguments there is nothing else but the line: "return 0".</td>
+                <td>In icalc.py there is no function for checksum operation. In calculator.py checksum() function after it takes an argument there is nothing else but the line: "return 0".</td>
                 <td>test_checksum_function_in_calculator_py()</td>
                 <td>Low</td>
                 <td>Minor</td>
