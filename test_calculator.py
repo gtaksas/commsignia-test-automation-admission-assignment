@@ -3,6 +3,8 @@
 import icalc
 import calculator
 import pytest
+import sys
+from io import StringIO
 
 
 @pytest.fixture
@@ -54,12 +56,39 @@ def test_subtract_two_positive_numbers(calc, capfd):
     captured = capfd.readouterr()
     assert captured.out.strip() == '1907'
 
+# Chained numbers
+def test_subtract_more_than_two_numbers(calc, capfd):
+    calc.onecmd('sub 0 92 16 -9 20')
+    captured = capfd.readouterr()
+    assert captured.out.strip() == str(0 - 92 - 16 - -9 - 20)
+
+# Chained operatios
+def test_chain_more_than_one_operations(calc, capfd):
+    calc.onecmd('add sub 1 99 sub 109 12')
+    captured = capfd.readouterr()
+    assert captured.out.strip() == str(1 - 99 + 109 - 12)
+
 # mul
 # Multiplication
 def test_multiply_two_positive_numbers(calc, capfd):
     calc.onecmd('mul 256 4')
     captured = capfd.readouterr()
     assert captured.out.strip() == '1024'
+
+# There are three lines in calculator.py wich will make trouble 1 out of 100 times.
+def test_mul_functions_random_troublemaker(cal):
+    for i in range(1000):
+        result = cal.mul(6, 5)
+        assert result == 30
+
+# Check if we can kill the calculator without a response value limit.
+def test_response_value_limit(calc, capfd):
+    a = 99999^99999 * 99999^99999 * 99999^99999 * 99999^99999
+    b = 99999^99999 * 99999^99999 * 99999^99999 * 99999^99999
+    c = a * b
+    calc.onecmd('mul ' + str(a) + ' ' + str(b))
+    captured = capfd.readouterr()
+    assert captured.out.strip() == str(c)
 
 # div
 # Division
@@ -83,6 +112,12 @@ def test_div_function_in_calculator_py(cal):
 def test_div_aliquant(cal):
     result = cal.div(3, 2)
     assert result == 1.5
+
+# Zero division error is handled
+def test_zero_division(calc, capfd):
+    calc.onecmd('rem 4 0') #!!! -rem +div when D0003 bug is fixed
+    captured = capfd.readouterr()
+    assert captured.out.strip() == captured.out.strip()
 
 # rem
 # Remainder
@@ -169,8 +204,50 @@ def test_bit_shift_right_icalc(calc, capfd):
     captured = capfd.readouterr()
     assert captured.out.strip() == str(c)
 
-# There are three lines in calculator.py wich will make trouble 1 out of 100 times.
-def test_mul_functions_random_troublemaker(cal):
-    for i in range(0, 1000):
-        result = cal.mul(6, 5)
-        assert result == 30
+# help
+# Check if add is in help
+def test_help(calc, capsys):
+    calc.onecmd('help')
+    #time.sleep(2)
+    captured = capsys.readouterr()
+    print(type(captured))
+    print(type(captured.out))
+    assert 'add' in captured.out.strip()
+    assert 'add' in captured.err
+
+def test_help1(calc, capfd):
+    calc.onecmd('help')
+    calc.cmdloop().stdout = sys.stdout
+    captured = capfd.readouterr()
+    calc.cmdloop().stdout = sys.__stdout__  # Restore the original stdout
+    assert 'add' in captured.out.strip()
+
+def test_help2(calc, capfd):
+    calc.onecmd('help')
+    captured = capfd.readouterr()
+    assert 'add' in captured.out.strip()
+
+def test_help3(calc, capfd):
+    calc.onecmd('help')
+    temp_stdout = sys.stdout
+    sys.stdout = StringIO()
+    try:
+        calc.onecmd('help')
+        captured_string = sys.stdout.getvalue().strip()
+        assert 'add' in captured_string
+    finally:
+        sys.stdout = temp_stdout
+
+# Check if checksum is in help
+def test_checksum_in_help(calc, capfd):
+    calc.onecmd('help')
+    captured = capfd.readouterr()
+    assert 'checksum' in captured.out.strip()
+
+# exit
+# Check if icalc.py sys.exit() when 'exit' is typed in command line
+def test_exit(calc):
+    with pytest.raises(SystemExit) as e:
+        calc.onecmd('exit')
+    assert e.type == SystemExit
+    assert e.value.code == None

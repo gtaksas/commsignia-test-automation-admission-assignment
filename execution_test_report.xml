@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="10" skipped="0" tests="24" time="0.331" timestamp="2023-05-16T14:33:10.556069" hostname="DESKTOP-OPX62DO"><testcase classname="test_calculator" name="test_add_two_positive_numbers" time="0.008" /><testcase classname="test_calculator" name="test_add_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_input_dont_get_stuck" time="0.002" /><testcase classname="test_calculator" name="test_add_two_negative_numbers" time="0.005" /><testcase classname="test_calculator" name="test_add_floats" time="0.005"><failure message="ValueError: invalid literal for int() with base 10: '2.5'">calc = &lt;icalc.InteractiveCalculator object at 0x000001B71B11F760&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001B71B11F1C0&gt;
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="19" skipped="0" tests="35" time="0.561" timestamp="2023-05-19T09:27:53.829808" hostname="DESKTOP-OPX62DO"><testcase classname="test_calculator" name="test_add_two_positive_numbers" time="0.007" /><testcase classname="test_calculator" name="test_add_function_in_calculator_py" time="0.002" /><testcase classname="test_calculator" name="test_input_dont_get_stuck" time="0.001" /><testcase classname="test_calculator" name="test_add_two_negative_numbers" time="0.006" /><testcase classname="test_calculator" name="test_add_floats" time="0.007"><failure message="ValueError: invalid literal for int() with base 10: '2.5'">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023E02B50&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023E02A90&gt;
 
     def test_add_floats(calc, capfd):
 &gt;       calc.onecmd('add 2.5 2.5')
 
-test_calculator.py:35: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_calculator.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 c:\python\python39\lib\cmd.py:217: in onecmd
     return func(arg)
 icalc.py:15: in do_add
     print(self.cal.add(*parse(arg)))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 arg = '2.5 2.5'
 
@@ -18,7 +18,53 @@ arg = '2.5 2.5'
 &gt;       return tuple(map(int, arg.split()))
 E       ValueError: invalid literal for int() with base 10: '2.5'
 
-icalc.py:67: ValueError</failure></testcase><testcase classname="test_calculator" name="test_add_and_return_floats_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_subtract_two_positive_numbers" time="0.005" /><testcase classname="test_calculator" name="test_multiply_two_positive_numbers" time="0.004" /><testcase classname="test_calculator" name="test_divide_aliquot_whole_numbers" time="0.008"><failure message="AssertionError: assert '0' == '2'&#10;  - 2&#10;  + 0">calc = &lt;icalc.InteractiveCalculator object at 0x000001B71B1A40D0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001B71B1A4B50&gt;
+icalc.py:67: ValueError</failure></testcase><testcase classname="test_calculator" name="test_add_and_return_floats_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_subtract_two_positive_numbers" time="0.006" /><testcase classname="test_calculator" name="test_subtract_more_than_two_numbers" time="0.006"><failure message="TypeError: sub() takes 3 positional arguments but 6 were given">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023EAC370&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023EAC8B0&gt;
+
+    def test_subtract_more_than_two_numbers(calc, capfd):
+&gt;       calc.onecmd('sub 0 92 16 -9 20')
+
+test_calculator.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+c:\python\python39\lib\cmd.py:217: in onecmd
+    return func(arg)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;icalc.InteractiveCalculator object at 0x0000028023EAC370&gt;, arg = '0 92 16 -9 20'
+
+    def do_sub(self, arg):
+        'A - B'
+&gt;       print(self.cal.sub(*parse(arg)))
+E       TypeError: sub() takes 3 positional arguments but 6 were given
+
+icalc.py:19: TypeError</failure></testcase><testcase classname="test_calculator" name="test_chain_more_than_one_operations" time="0.006"><failure message="ValueError: invalid literal for int() with base 10: 'sub'">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023E47400&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023E47310&gt;
+
+    def test_chain_more_than_one_operations(calc, capfd):
+&gt;       calc.onecmd('add sub 1 99 sub 109 12')
+
+test_calculator.py:67: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+c:\python\python39\lib\cmd.py:217: in onecmd
+    return func(arg)
+icalc.py:15: in do_add
+    print(self.cal.add(*parse(arg)))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+arg = 'sub 1 99 sub 109 12'
+
+    def parse(arg):
+        'Convert a series of zero or more numbers to an argument tuple'
+&gt;       return tuple(map(int, arg.split()))
+E       ValueError: invalid literal for int() with base 10: 'sub'
+
+icalc.py:67: ValueError</failure></testcase><testcase classname="test_calculator" name="test_multiply_two_positive_numbers" time="0.004" /><testcase classname="test_calculator" name="test_mul_functions_random_troublemaker" time="0.002"><failure message="assert 119 == 30">cal = &lt;calculator.Calculator object at 0x0000028023E5EB20&gt;
+
+    def test_mul_functions_random_troublemaker(cal):
+        for i in range(1000):
+            result = cal.mul(6, 5)
+&gt;           assert result == 30
+E           assert 119 == 30
+
+test_calculator.py:82: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_response_value_limit" time="0.005" /><testcase classname="test_calculator" name="test_divide_aliquot_whole_numbers" time="0.005"><failure message="AssertionError: assert '0' == '2'&#10;  - 2&#10;  + 0">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023E98430&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023E98070&gt;
 
     def test_divide_aliquot_whole_numbers(calc, capfd):
         calc.onecmd('div 4 2')
@@ -28,18 +74,37 @@ E       AssertionError: assert '0' == '2'
 E         - 2
 E         + 0
 
-test_calculator.py:64: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_divide_A_B_input_sequence_reversed" time="0.006"><failure message="AssertionError: assert '2' != '2'&#10; +  where '2' = &lt;built-in method strip of str object at 0x000001B71B1E1230&gt;()&#10; +    where &lt;built-in method strip of str object at 0x000001B71B1E1230&gt; = '2\n'.strip&#10; +      where '2\n' = CaptureResult(out='2\n', err='').out">calc = &lt;icalc.InteractiveCalculator object at 0x000001B71B11FCA0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001B71B1602B0&gt;
+test_calculator.py:98: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_divide_A_B_input_sequence_reversed" time="0.007"><failure message="AssertionError: assert '2' != '2'&#10; +  where '2' = &lt;built-in method strip of str object at 0x0000028023E8C0F0&gt;()&#10; +    where &lt;built-in method strip of str object at 0x0000028023E8C0F0&gt; = '2\n'.strip&#10; +      where '2\n' = CaptureResult(out='2\n', err='').out">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023EA7F70&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023EA7AF0&gt;
 
     def test_divide_A_B_input_sequence_reversed(calc, capfd):
         calc.onecmd('div 2 4')
         captured = capfd.readouterr()
 &gt;       assert captured.out.strip() != '2'
 E       AssertionError: assert '2' != '2'
-E        +  where '2' = &lt;built-in method strip of str object at 0x000001B71B1E1230&gt;()
-E        +    where &lt;built-in method strip of str object at 0x000001B71B1E1230&gt; = '2\n'.strip
+E        +  where '2' = &lt;built-in method strip of str object at 0x0000028023E8C0F0&gt;()
+E        +    where &lt;built-in method strip of str object at 0x0000028023E8C0F0&gt; = '2\n'.strip
 E        +      where '2\n' = CaptureResult(out='2\n', err='').out
 
-test_calculator.py:70: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_div_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_div_aliquant" time="0.001" /><testcase classname="test_calculator" name="test_rem_simple" time="0.005"><failure message="AssertionError: assert '0.3333333333333333' == '1'&#10;  - 1&#10;  + 0.3333333333333333">calc = &lt;icalc.InteractiveCalculator object at 0x000001B71B1956D0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001B71B195490&gt;
+test_calculator.py:104: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_div_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_div_aliquant" time="0.002" /><testcase classname="test_calculator" name="test_zero_division" time="0.004"><failure message="ZeroDivisionError: division by zero">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023E99100&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023E99F10&gt;
+
+    def test_zero_division(calc, capfd):
+&gt;       calc.onecmd('rem 4 0') #!!! -rem +div when D0003 bug is fixed
+
+test_calculator.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+c:\python\python39\lib\cmd.py:217: in onecmd
+    return func(arg)
+icalc.py:31: in do_rem
+    print(self.cal.div(*parse(arg)))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;calculator.Calculator object at 0x0000028023DD42E0&gt;, a = 4, b = 0
+
+    def div(self, a, b):
+&gt;       return a / b
+E       ZeroDivisionError: division by zero
+
+calculator.py:24: ZeroDivisionError</failure></testcase><testcase classname="test_calculator" name="test_rem_simple" time="0.005"><failure message="AssertionError: assert '0.3333333333333333' == '1'&#10;  - 1&#10;  + 0.3333333333333333">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023E1EE20&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023E1EB50&gt;
 
     def test_rem_simple(calc, capfd):
         calc.onecmd('rem 1 3')
@@ -49,31 +114,38 @@ E       AssertionError: assert '0.3333333333333333' == '1'
 E         - 1
 E         + 0.3333333333333333
 
-test_calculator.py:89: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_rem_function_in_calculator_py" time="0.003" /><testcase classname="test_calculator" name="test_sqrt_simple" time="0.007"><failure message="TypeError: sub() missing 1 required positional argument: 'b'">calc = &lt;icalc.InteractiveCalculator object at 0x000001B71B1A7910&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001B71B1A72B0&gt;
+test_calculator.py:127: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_rem_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_sqrt_simple" time="0.009"><failure message="TypeError: sub() missing 1 required positional argument: 'b'">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023E76190&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023E76280&gt;
 
     def test_sqrt_simple(calc, capfd):
 &gt;       calc.onecmd('sqrt 25')
 
-test_calculator.py:100: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_calculator.py:137: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 c:\python\python39\lib\cmd.py:217: in onecmd
     return func(arg)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = &lt;icalc.InteractiveCalculator object at 0x000001B71B1A7910&gt;, arg = '25'
+self = &lt;icalc.InteractiveCalculator object at 0x0000028023E76190&gt;, arg = '25'
 
     def do_sqrt(self, arg):
         'sqrt(A)'
 &gt;       print(self.cal.sub(*parse(arg)))
 E       TypeError: sub() missing 1 required positional argument: 'b'
 
-icalc.py:35: TypeError</failure></testcase><testcase classname="test_calculator" name="test_sqrt_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_checksum_function_in_calculator_py" time="0.001"><failure message="assert (0 != 0)">def test_checksum_function_in_calculator_py():
-        cal = calculator.Calculator()
+icalc.py:35: TypeError</failure></testcase><testcase classname="test_calculator" name="test_sqrt_function_in_calculator_py" time="0.001" /><testcase classname="test_calculator" name="test_checksum_function_in_calculator_py" time="0.001"><failure message="assert (0 != 0)">cal = &lt;calculator.Calculator object at 0x0000028023E025E0&gt;
+
+    def test_checksum_function_in_calculator_py(cal):
         result = cal.checksum(123) and cal.checksum(321)
 &gt;       assert result != 0 and 0
 E       assert (0 != 0)
 
-test_calculator.py:115: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_and_icalc" time="0.005" /><testcase classname="test_calculator" name="test_bit_or_icalc" time="0.006"><failure message="AssertionError: assert '' == '1536'&#10;  - 1536">calc = &lt;icalc.InteractiveCalculator object at 0x000001B71B161280&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001B71B161E20&gt;
+test_calculator.py:150: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_incorrect_checksum" time="0.001"><failure message="TypeError: checksum() takes 2 positional arguments but 3 were given">cal = &lt;calculator.Calculator object at 0x0000028023E69A00&gt;
+
+    def test_incorrect_checksum(cal):
+&gt;       result = cal.checksum(11010101011000111001010011101100, 8)
+E       TypeError: checksum() takes 2 positional arguments but 3 were given
+
+test_calculator.py:154: TypeError</failure></testcase><testcase classname="test_calculator" name="test_bit_and_icalc" time="0.005" /><testcase classname="test_calculator" name="test_bit_or_icalc" time="0.008"><failure message="AssertionError: assert '' == '1536'&#10;  - 1536">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023E1EE80&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023E1E7F0&gt;
 
     def test_bit_or_icalc(calc, capfd):
         calc.onecmd('bit_or 1024 512')
@@ -82,7 +154,7 @@ test_calculator.py:115: AssertionError</failure></testcase><testcase classname="
 E       AssertionError: assert '' == '1536'
 E         - 1536
 
-test_calculator.py:129: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_xor_icalc" time="0.006" /><testcase classname="test_calculator" name="test_bit_not_icalc" time="0.006"><failure message="AssertionError: assert '58' == '5'&#10;  - 5&#10;  + 58">calc = &lt;icalc.InteractiveCalculator object at 0x000001B71B151FD0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001B71B151EE0&gt;
+test_calculator.py:169: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_xor_icalc" time="0.006" /><testcase classname="test_calculator" name="test_bit_not_icalc" time="0.007"><failure message="AssertionError: assert '58' == '5'&#10;  - 5&#10;  + 58">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023EAC1C0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023EAC190&gt;
 
     def test_bit_not_icalc(calc, capfd):
         number = int('111010', 2)
@@ -94,7 +166,7 @@ E       AssertionError: assert '58' == '5'
 E         - 5
 E         + 58
 
-test_calculator.py:145: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_shift_left_icalc" time="0.006" /><testcase classname="test_calculator" name="test_bit_shift_right_icalc" time="0.005"><failure message="NameError: name 'arg' is not defined">calc = &lt;icalc.InteractiveCalculator object at 0x000001B71B1A8AC0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x000001B71B1A8460&gt;
+test_calculator.py:185: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_bit_shift_left_icalc" time="0.005" /><testcase classname="test_calculator" name="test_bit_shift_right_icalc" time="0.006"><failure message="NameError: name 'arg' is not defined">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023E60490&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023E605E0&gt;
 
     def test_bit_shift_right_icalc(calc, capfd):
         a = int('01110000', 2)
@@ -102,24 +174,85 @@ test_calculator.py:145: AssertionError</failure></testcase><testcase classname="
         c = int('00000111', 2)
 &gt;       calc.onecmd('bit_shift_right ' + str(a) + ' ' + str(b))
 
-test_calculator.py:163: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_calculator.py:203: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 c:\python\python39\lib\cmd.py:217: in onecmd
     return func(arg)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = &lt;icalc.InteractiveCalculator object at 0x000001B71B1A8AC0&gt;, a = '112 4'
+self = &lt;icalc.InteractiveCalculator object at 0x0000028023E60490&gt;, a = '112 4'
 
     def do_bit_shift_right(self, a):
         'num &gt;&gt; shift'
 &gt;       print(self.cal.bshl(*parse(arg)))
 E       NameError: name 'arg' is not defined
 
-icalc.py:59: NameError</failure></testcase><testcase classname="test_calculator" name="test_mul_functions_random_troublemaker" time="0.001"><failure message="assert 119 == 30">def test_mul_functions_random_troublemaker():
-        cal = calculator.Calculator()
-        for i in range(0, 1000):
-            result = cal.mul(6, 5)
-&gt;           assert result == 30
-E           assert 119 == 30
+icalc.py:59: NameError</failure></testcase><testcase classname="test_calculator" name="test_help" time="0.002"><failure message="AssertionError: assert 'add' in ''&#10; +  where '' = &lt;built-in method strip of str object at 0x0000028020EC4670&gt;()&#10; +    where &lt;built-in method strip of str object at 0x0000028020EC4670&gt; = ''.strip&#10; +      where '' = CaptureResult(out='', err='').out">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023EA9790&gt;, capsys = &lt;_pytest.capture.CaptureFixture object at 0x0000028023EA9C10&gt;
 
-test_calculator.py:172: AssertionError</failure></testcase></testsuite></testsuites>
+    def test_help(calc, capsys):
+        calc.onecmd('help')
+        #time.sleep(2)
+        captured = capsys.readouterr()
+        print(type(captured))
+        print(type(captured.out))
+&gt;       assert 'add' in captured.out.strip()
+E       AssertionError: assert 'add' in ''
+E        +  where '' = &lt;built-in method strip of str object at 0x0000028020EC4670&gt;()
+E        +    where &lt;built-in method strip of str object at 0x0000028020EC4670&gt; = ''.strip
+E        +      where '' = CaptureResult(out='', err='').out
+
+test_calculator.py:215: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_help1" time="0.010"><failure message="OSError: pytest: reading from stdin while output is captured!  Consider using `-s`.">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023E77B50&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023E77E80&gt;
+
+    def test_help1(calc, capfd):
+        calc.onecmd('help')
+&gt;       calc.cmdloop().stdout = sys.stdout
+
+test_calculator.py:220: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+c:\python\python39\lib\cmd.py:126: in cmdloop
+    line = input(self.prompt)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;_pytest.capture.DontReadFromInput object at 0x00000280221628B0&gt;, size = -1
+
+    def read(self, size: int = -1) -&gt; str:
+&gt;       raise OSError(
+            "pytest: reading from stdin while output is captured!  Consider using `-s`."
+        )
+E       OSError: pytest: reading from stdin while output is captured!  Consider using `-s`.
+
+c:\python\python39\lib\site-packages\_pytest\capture.py:202: OSError</failure></testcase><testcase classname="test_calculator" name="test_help2" time="0.006"><failure message="AssertionError: assert 'add' in ''&#10; +  where '' = &lt;built-in method strip of str object at 0x0000028020EC4670&gt;()&#10; +    where &lt;built-in method strip of str object at 0x0000028020EC4670&gt; = ''.strip&#10; +      where '' = CaptureResult(out='', err='').out">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023EA9550&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023EA97C0&gt;
+
+    def test_help2(calc, capfd):
+        calc.onecmd('help')
+        captured = capfd.readouterr()
+&gt;       assert 'add' in captured.out.strip()
+E       AssertionError: assert 'add' in ''
+E        +  where '' = &lt;built-in method strip of str object at 0x0000028020EC4670&gt;()
+E        +    where &lt;built-in method strip of str object at 0x0000028020EC4670&gt; = ''.strip
+E        +      where '' = CaptureResult(out='', err='').out
+
+test_calculator.py:228: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_help3" time="0.005"><failure message="AssertionError: assert 'add' in ''">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023F4E940&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023F4E790&gt;
+
+    def test_help3(calc, capfd):
+        calc.onecmd('help')
+        temp_stdout = sys.stdout
+        sys.stdout = StringIO()
+        try:
+            calc.onecmd('help')
+            captured_string = sys.stdout.getvalue().strip()
+&gt;           assert 'add' in captured_string
+E           AssertionError: assert 'add' in ''
+
+test_calculator.py:237: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_checksum_in_help" time="0.006"><failure message="AssertionError: assert 'checksum' in ''&#10; +  where '' = &lt;built-in method strip of str object at 0x0000028020EC4670&gt;()&#10; +    where &lt;built-in method strip of str object at 0x0000028020EC4670&gt; = ''.strip&#10; +      where '' = CaptureResult(out='', err='').out">calc = &lt;icalc.InteractiveCalculator object at 0x0000028023EA9AF0&gt;, capfd = &lt;_pytest.capture.CaptureFixture object at 0x0000028023E5EA00&gt;
+
+    def test_checksum_in_help(calc, capfd):
+        calc.onecmd('help')
+        captured = capfd.readouterr()
+&gt;       assert 'checksum' in captured.out.strip()
+E       AssertionError: assert 'checksum' in ''
+E        +  where '' = &lt;built-in method strip of str object at 0x0000028020EC4670&gt;()
+E        +    where &lt;built-in method strip of str object at 0x0000028020EC4670&gt; = ''.strip
+E        +      where '' = CaptureResult(out='', err='').out
+
+test_calculator.py:245: AssertionError</failure></testcase><testcase classname="test_calculator" name="test_exit" time="0.002" /></testsuite></testsuites>

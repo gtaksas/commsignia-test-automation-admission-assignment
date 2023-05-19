@@ -183,6 +183,70 @@
                     </select>
                 </td>
             </tr>
+            <tr>
+                <td>D0011</td>
+                <td>Zero division is not handled</td>
+                <td>icalc.py stop running when we try to divide by zero and don't handle ZeroDivisionError.</td>
+                <td>test_zero_division()</td>
+                <td>Low</td>
+                <td>Trivial</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0012</td>
+                <td>Chained numbers</td>
+                <td>Operations with more than two numbers are not possible.</td>
+                <td>test_subtract_more_than_two_numbers()</td>
+                <td>Low</td>
+                <td>Trivial</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0013</td>
+                <td>Chained operations</td>
+                <td>It is not possible to chain more than one operations.</td>
+                <td>test_chain_more_than_one_operations()</td>
+                <td>Low</td>
+                <td>Trivial</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>D0014</td>
+                <td>No checksum in icalc and help</td>
+                <td>checksum is not present in help and icalc.</td>
+                <td>(test_checksum_in_help())</td>
+                <td>Medium</td>
+                <td>Trivial</td>
+                <td>
+                    <select>
+                        <option>Reported</option>
+                        <option>Retest</option>
+                        <option>Rejected</option>
+                        <option>Solved</option>
+                    </select>
+                </td>
+            </tr>
         </table>
         <table class="center">
             <tr>
@@ -196,6 +260,10 @@
             <tr>
                 <th></th>
                 <td>2023.05.16. 14:33</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>2023.05.19. 09:27</td>
             </tr>
             <tr>
                 <th>Tester</th>
