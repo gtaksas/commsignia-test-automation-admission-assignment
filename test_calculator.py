@@ -5,6 +5,7 @@ import calculator
 import pytest
 import sys
 from io import StringIO
+# import subprocess
 
 
 @pytest.fixture
@@ -14,6 +15,15 @@ def calc():
 @pytest.fixture
 def cal():
     return calculator.Calculator()
+
+@pytest.fixture
+def turtle():
+    output = StringIO()
+    sys.stdout = output
+    icalc.InteractiveCalculator().onecmd('help')
+    sys.stdout = sys.__stdout__
+    output_string = output.getvalue()
+    return output_string
 
 # add
 # Test Addition
@@ -206,43 +216,17 @@ def test_bit_shift_right_icalc(calc, capfd):
 
 # help
 # Check if add is in help
-def test_help(calc, capsys):
-    calc.onecmd('help')
-    #time.sleep(2)
-    captured = capsys.readouterr()
-    print(type(captured))
-    print(type(captured.out))
-    assert 'add' in captured.out.strip()
-    assert 'add' in captured.err
-
-def test_help1(calc, capfd):
-    calc.onecmd('help')
-    calc.cmdloop().stdout = sys.stdout
-    captured = capfd.readouterr()
-    calc.cmdloop().stdout = sys.__stdout__  # Restore the original stdout
-    assert 'add' in captured.out.strip()
-
-def test_help2(calc, capfd):
-    calc.onecmd('help')
-    captured = capfd.readouterr()
-    assert 'add' in captured.out.strip()
-
-def test_help3(calc, capfd):
-    calc.onecmd('help')
-    temp_stdout = sys.stdout
-    sys.stdout = StringIO()
-    try:
-        calc.onecmd('help')
-        captured_string = sys.stdout.getvalue().strip()
-        assert 'add' in captured_string
-    finally:
-        sys.stdout = temp_stdout
+def test_help(turtle):
+    assert 'add' in turtle
 
 # Check if checksum is in help
-def test_checksum_in_help(calc, capfd):
-    calc.onecmd('help')
-    captured = capfd.readouterr()
-    assert 'checksum' in captured.out.strip()
+def test_checksum_in_help(turtle):
+    assert 'checksum' in turtle
+
+def test_if_every_operation_is_present_in_help(turtle):
+    operations = ['add', 'sub', 'mul', 'div', 'rem', 'sqrt', 'bit_not', 'bit_shift_left', 'bit_xor', 'bit_and', 'bit_or', 'bit_shift_right', 'checksum', 'help', 'exit']
+    for i in operations:
+        assert i in turtle
 
 # exit
 # Check if icalc.py sys.exit() when 'exit' is typed in command line
